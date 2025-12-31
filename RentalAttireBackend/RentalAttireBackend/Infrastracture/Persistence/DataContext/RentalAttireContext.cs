@@ -5,7 +5,7 @@ namespace RentalAttireBackend.Infrastracture.Persistence.DataContext
 {
     public class RentalAttireContext : DbContext
     {
-        public RentalAttireContext(DbContextOptions options) : base(options) { }
+        public RentalAttireContext(DbContextOptions<RentalAttireContext> options) : base(options) { }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
