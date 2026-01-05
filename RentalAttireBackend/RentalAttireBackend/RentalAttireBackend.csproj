@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Employees\Commands\" />
+    <Folder Include="Application\Users\Queries\" />
     <Folder Include="Controllers\ClotheManagerController\" />
     <Folder Include="Controllers\CashierController\" />
   </ItemGroup>

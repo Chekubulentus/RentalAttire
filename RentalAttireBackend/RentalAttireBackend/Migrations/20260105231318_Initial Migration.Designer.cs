@@ -12,7 +12,7 @@ using RentalAttireBackend.Infrastracture.Persistence.DataContext;
 namespace RentalAttireBackend.Migrations
 {
     [DbContext(typeof(RentalAttireContext))]
-    [Migration("20251231000151_Initial Migration")]
+    [Migration("20260105231318_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -82,11 +82,10 @@ namespace RentalAttireBackend.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UpdatedBy")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -127,16 +126,18 @@ namespace RentalAttireBackend.Migrations
                     b.Property<int>("RolePosition")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UpdatedBy")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleCode")
+                        .IsUnique();
+
+                    b.HasIndex("RolePosition")
                         .IsUnique();
 
                     b.ToTable("Roles");
@@ -167,16 +168,16 @@ namespace RentalAttireBackend.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UpdatedBy")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
 

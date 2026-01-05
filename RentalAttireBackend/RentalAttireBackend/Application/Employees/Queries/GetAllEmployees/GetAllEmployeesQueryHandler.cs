@@ -20,7 +20,7 @@ namespace RentalAttireBackend.Application.Employees.Queries.GetAllEmployees
 
         public async Task<Result<List<EmployeeDTO>>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
         {
-            var employees = await _employeeRepo.GetAllEmployeesAsync();
+            var employees = await _employeeRepo.GetAllEmployeesAsync(cancellationToken);
 
             if (!employees.Any() || employees.Count() == 0)
                 return Result<List<EmployeeDTO>>.Failure("No employees currently found.");

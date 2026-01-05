@@ -7,10 +7,10 @@ namespace RentalAttireBackend.Domain.Interfaces
 {
     public interface IEmployeeRepository
     {
-        public Task<List<Employee>> GetAllEmployeesAsync();
-        public Task<Employee?> GetEmployeeByIdAsync(int id);
-        public Task<bool> CreateEmployeeAsync(EmployeeDTO request);
-        public Task<bool> ArchiveEmployeeByIdAsync(int id);
-        public Task<bool> UpdateEmployeeByIdAsync(EmployeeDTO request);
+        public Task<List<Employee>> GetAllEmployeesAsync(CancellationToken token);
+        public Task<Employee?> GetEmployeeByIdAsync(int id, CancellationToken token);
+        public Task<bool> CreateEmployeeAsync(Employee request, CancellationToken token);
+        public Task<bool> ArchiveEmployeeByIdAsync(int id, CancellationToken token);
+        public Task<bool> UpdateEmployeeByIdAsync(EmployeeDTO request, CancellationToken token);
     }
 }

@@ -15,28 +15,31 @@ namespace RentalAttireBackend.Infrastracture.Persistence.Repositories
             _context = context;
         }
 
-        public Task<bool> ArchiveEmployeeByIdAsync(int id)
+        public Task<bool> ArchiveEmployeeByIdAsync(int id, CancellationToken token)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> CreateEmployeeAsync(EmployeeDTO request)
+        public async Task<bool> CreateEmployeeAsync(Employee request, CancellationToken token)
         {
-            throw new NotImplementedException();
+            await _context.Employees.AddAsync(request);
+            await _context.SaveChangesAsync(token);
+            return true;
         }
 
-        public async Task<List<Employee>> GetAllEmployeesAsync()
+        public async Task<List<Employee>> GetAllEmployeesAsync(CancellationToken cancellationToken)
         {
             return await _context.Employees.AsNoTracking()
-                .ToListAsync();
+                .Include(e => e.Role)
+                .ToListAsync(cancellationToken);
         }
 
-        public async Task<Employee?> GetEmployeeByIdAsync(int id)
+        public async Task<Employee?> GetEmployeeByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return await _context.Employees.FindAsync(id);
+            return await _context.Employees.FindAsync(id, cancellationToken);
         }
 
-        public Task<bool> UpdateEmployeeByIdAsync(EmployeeDTO request)
+        public Task<bool> UpdateEmployeeByIdAsync(EmployeeDTO request, CancellationToken token)
         {
             throw new NotImplementedException();
         }

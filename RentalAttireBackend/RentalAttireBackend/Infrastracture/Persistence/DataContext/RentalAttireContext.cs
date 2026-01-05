@@ -43,6 +43,7 @@ namespace RentalAttireBackend.Infrastracture.Persistence.DataContext
             modelBuilder.Entity<User>(e =>
             {
                 e.HasIndex(u => u.Username).IsUnique();
+                e.Property(u => u.Username).HasMaxLength(50);
                 e.Property(u => u.EmployeeId).IsRequired();
                 e.Property(u => u.HashedPassword).IsRequired();
             });
@@ -50,6 +51,7 @@ namespace RentalAttireBackend.Infrastracture.Persistence.DataContext
             modelBuilder.Entity<Role>(e =>
             {
                 e.HasIndex(r => r.RoleCode).IsUnique();
+                e.HasIndex(r => r.RolePosition).IsUnique();
                 e.Property(r => r.RolePosition).IsRequired();
             });
         }

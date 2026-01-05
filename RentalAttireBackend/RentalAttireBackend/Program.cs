@@ -24,6 +24,7 @@ builder.Services.AddAutoMapper(x => x.AddProfile<MappingProfile>());
 
 //Scopes
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 
